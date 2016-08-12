@@ -27,6 +27,33 @@ ansible 2.1.0.0
 # cd /etc/ansible
 # git clone https://github.com/wanghy8166/mysql_install.git 
 
+下载用ansible编写的安装脚本，目录结构为
+# tree
+.
+├── mysql_install.yml
+├── README
+└── roles
+    ├── common
+    │   └── tasks
+    │       └── main.yml
+    └── mysql_install
+        ├── files
+        │   └── mysql-5.6.22-linux-glibc2.5-x86_64.tar.gz -> /soft/mysql-5.6.22-linux-glibc2.5-x86_64.tar.gz
+        ├── tasks
+        │   ├── copy.yml
+        │   ├── delete.yml
+        │   ├── install.yml
+        │   └── main.yml
+        ├── templates
+        │   ├── install_mysql.sh
+        │   ├── my.cnf
+        │   ├── mysqld
+        │   └── mysql_security.sh
+        └── vars
+            └── main.yml
+
+8 directories, 13 files
+
 待安装mysql的被控端主机信息
 ip 172.17.4.180 
 # cat /etc/redhat-release 

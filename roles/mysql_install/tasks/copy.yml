@@ -3,7 +3,7 @@
   - name: Create Mysql group In Redhat Client
     group: name={{ mysql_user }} state=present 
   - name: Create Mysql User In Redhat Client
-    user: name={{ mysql_user }} state=present createhome=no shell=/sbin/nologin
+    user: name={{ mysql_user }} group={{ mysql_user }} state=present createhome=no shell=/sbin/nologin
   - name: Copy Mysql Start Script To Redhat Client
     template: src=mysqld dest=/etc/init.d/mysqld owner=root group=root mode=0755
   - name: Copy Install Mysql Script  To Redhat Client
