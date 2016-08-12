@@ -1,0 +1,43 @@
+----2016.8.12 添加  
+Ansible是一款IT自动化和DevOps软件 
+
+下面记录如何通过ansible安装mysql到其他主机
+
+控制端主机信息
+ip 172.17.4.179 
+# cat /etc/issue          
+CentOS release 6.4 (Final)
+# uname -r
+2.6.32-358.el6.x86_64
+# python -V
+Python 2.6.6
+
+控制端用阿里EPEL源安装Ansible
+# wget -O /etc/yum.repos.d/epel6.repo http://mirrors.aliyun.com/repo/epel-6.repo 
+# yum clean all
+# yum makecache
+# yum install ansible 
+# ansible --version
+ansible 2.1.0.0
+下载mysql程序，下载一次就好
+# mkdir -p /soft 
+# wget -O /soft/mysql-5.6.22-linux-glibc2.5-x86_64.tar.gz http://cdn.mysql.com/archives/mysql-5.6/mysql-5.6.22-linux-glibc2.5-x86_64.tar.gz 
+下载用ansible编写的安装脚本
+# yum install git tree 
+# cd /etc/ansible
+# git clone https://github.com/wanghy8166/mysql_install.git 
+
+待安装mysql的被控端主机信息
+ip 172.17.4.180 
+# cat /etc/redhat-release 
+CentOS Linux release 7.2.1511 (Core)
+# uname -r
+3.10.0-327.el7.x86_64
+# python -V
+Python 2.7.5
+外网调通
+yum下载环境配好
+
+在控制端执行mysql安装命令
+time ansible-playbook /etc/ansible/mysql_install/mysql_install.yml --extra-vars "host=172.17.4.180 user=root " 
+
