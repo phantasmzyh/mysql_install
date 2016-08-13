@@ -62,14 +62,41 @@ CentOS Linux release 7.2.1511 (Core)
 3.10.0-327.el7.x86_64
 # python -V
 Python 2.7.5
+
+CentOS7默认集成的是mysql的分支版本mariadb，所以也预装了mariadb-libs
+# rpm -qa|grep maria
+mariadb-libs-5.5.44-2.el7.centos.x86_64
+手工清理预装配置文件，ansible脚本也做了相同处理 
+touch /etc/my.cnf
+mv /etc/my.cnf /etc/my.cnf.`date +%Y%m%d%H%M%S`
+
 外网调通
+cat /etc/sysconfig/network-scripts/ifcfg-ens192    
+IPADDR="172.17.4.180"
+PREFIX="21"
+GATEWAY="172.17.0.49"
+DNS1="202.96.209.5"
+service network restart
 yum下载环境配好
+mv /etc/yum.repos.d /etc/yum.repos.d.org
+mkdir -p /etc/yum.repos.d
+cd /etc/yum.repos.d
+wget -O /etc/yum.repos.d/CentOS-Base7.repo http://mirrors.aliyun.com/repo/Centos-7.repo 
+wget -O /etc/yum.repos.d/epel7.repo http://mirrors.aliyun.com/repo/epel-7.repo 
+yum clean all
+yum makecache
 
 在控制端执行mysql安装命令
-time ansible-playbook /etc/ansible/mysql_install/mysql_install.yml --extra-vars "host=172.17.4.180 user=root " 
+time ansible-playbook /etc/ansible/mysql_install/mysql_install.yml --extra-vars "host=172.17.4.180 user=root" -k 
+-k是需要输入密码
+-vvv是debug模式，可以显示详细报错
 
 参考资料：
 官方文档 http://docs.ansible.com/ansible/index.html
 Ansible中文权威指南 http://www.ansible.com.cn/index.html
 示例 https://github.com/dl528888/ansible-examples/tree/master/mysql_install
+
+其他问题：
+在CentOS7系列执行mysql_install_db脚本需要先安装Perl子模块Data::Dumper
+yum install perl-Data-Dumper
 
