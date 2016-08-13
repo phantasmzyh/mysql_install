@@ -58,6 +58,7 @@ ansible 2.1.0.0
 ip 172.17.4.180 
 # cat /etc/redhat-release 
 CentOS Linux release 7.2.1511 (Core)
+OS基本环境选择的是:GNOME Desktop
 # uname -r
 3.10.0-327.el7.x86_64
 # python -V

@@ -5,7 +5,7 @@
   - name: link Mysql Software 
     file: src={{ mysql_dir }}/{{mysql_version}} dest={{ mysql_basedir }} state=link 
   - name: Modify Mysql Dir Permission In Redhat Client
-    file: path={{ item }} owner={{ mysql_user }} group={{ mysql_user }} mode=0755
+    file: path={{ item }} owner={{ mysql_user }} group={{ mysql_user }} mode=0755 state=directory 
     with_items:
       - "{{ mysql_datadir }}"
 #      - "{{ mysql_basedir }}"
