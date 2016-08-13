@@ -10,3 +10,9 @@
 
 firewall-cmd --zone=public --add-port={{ mysql_port }}/tcp --permanent
 firewall-cmd --reload
+
+iptables -A INPUT -p tcp --dport 3306 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 3306 -j ACCEPT
+service iptables save
+service iptables restart
+
