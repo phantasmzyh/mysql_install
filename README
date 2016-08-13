@@ -68,3 +68,8 @@ yum下载环境配好
 在控制端执行mysql安装命令
 time ansible-playbook /etc/ansible/mysql_install/mysql_install.yml --extra-vars "host=172.17.4.180 user=root " 
 
+参考资料：
+官方文档 http://docs.ansible.com/ansible/index.html
+Ansible中文权威指南 http://www.ansible.com.cn/index.html
+示例 https://github.com/dl528888/ansible-examples/tree/master/mysql_install
+
