@@ -100,3 +100,8 @@ Ansible中文权威指南 http://www.ansible.com.cn/index.html
 在CentOS7系列执行mysql_install_db脚本需要先安装Perl子模块Data::Dumper
 yum install perl-Data-Dumper
 
+待研究问题：
+主机bios调优
+OS调优
+my.cnf配置文件里面的各项参数调优
+
