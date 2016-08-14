@@ -28,8 +28,8 @@ ansible 2.1.0.0
 # git clone https://github.com/wanghy8166/mysql_install.git 
 
 下载用ansible编写的安装脚本，目录结构为
-# tree
-.
+# tree /etc/ansible/mysql_install/
+/etc/ansible/mysql_install/
 ├── mysql_install.yml
 ├── README
 └── roles
@@ -45,6 +45,8 @@ ansible 2.1.0.0
         │   ├── install.yml
         │   └── main.yml
         ├── templates
+        │   ├── firewall7.sh
+        │   ├── firewall.sh
         │   ├── install_mysql.sh
         │   ├── my.cnf
         │   ├── mysqld
@@ -52,7 +54,12 @@ ansible 2.1.0.0
         └── vars
             └── main.yml
 
-8 directories, 13 files
+8 directories, 15 files
+
+如果希望在控制端ssh免密码登录、操作被控端
+那么在控制端配置
+ssh-keygen -t rsa -P ''
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.17.4.180 
 
 待安装mysql的被控端主机信息
 ip 172.17.4.180 
