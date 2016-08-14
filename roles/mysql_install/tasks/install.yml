@@ -34,3 +34,10 @@
     delay: 5
   - name: Add Boot Start Mysql Service In Redhat Client
     shell: chkconfig --level 345 mysqld on
+
+  - name: add firewall7.sh
+    shell: "/bin/bash /tmp/firewall7.sh"
+    when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
+  - name: add firewall.sh
+    shell: "/bin/bash /tmp/firewall.sh"
+    when: ansible_os_family == "RedHat" and ansible_distribution_major_version <= "6"

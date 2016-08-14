@@ -12,3 +12,7 @@
     template: src=my.cnf dest=/tmp/ owner=root group=root mode=0644
   - name: Copy Mysql Security Script To Redhat Client
     template: src=mysql_security.sh dest=/tmp/ owner=root group=root mode=0755
+  - name: Copy firewall7.sh
+    template: src=firewall7.sh dest=/tmp/ owner=root group=root mode=0755
+  - name: Copy firewall.sh
+    template: src=firewall.sh dest=/tmp/ owner=root group=root mode=0755
